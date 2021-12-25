@@ -1,0 +1,45 @@
+﻿@model MVC.Models.mvcCricketerModel
+@{
+    ViewBag.Title = "Add";
+}
+
+
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.Jersey_Number)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Age)
+            @Html.EditorFor(model => model.Age)
+            @Html.ValidationMessageFor(model => model.Age)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Player_Role)
+            @Html.EditorFor(model => model.Player_Role)
+            @Html.ValidationMessageFor(model => model.Player_Role)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contract_Category)
+            @Html.EditorFor(model => model.Contract_Category)
+            @Html.ValidationMessageFor(model => model.Contract_Category)
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn button" />
+            <input type="reset" value="Reset" class="btn button" />
+        </div>
+    }
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+<link href="~/Content/Site.css" rel="stylesheet" />
+}

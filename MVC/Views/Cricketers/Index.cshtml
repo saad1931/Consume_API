@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MVC.Models.mvcCricketerModel>
+
+@{
+    ViewBag.Title = "PCB";
+}
+
+<br/>
+
+<p>
+    <a href="@Url.Action("Add","Cricketers")" class="btn btn-default"><i class="fa fa-plus"></i> Create New</a>
+</p>
+<table class="table table-striped">
+    <thead class="table-heading ">
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Jersey_Number)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Player_Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contract_Category)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Jersey_Number)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Player_Role)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contract_Category)
+            </td>
+            <td>
+                <a href="@Url.Action("Add", "Cricketers", new { id = item.Jersey_Number})" class="btn btn-default"><i class="fa fa-pencil"></i>  Edit</a>
+                <a onclick="Delete(@item.Jersey_Number)" class="btn btn-default"><i class="fa fa-trash"></i>  Delete</a>
+            </td>
+        </tr>
+    }
+    
+</table>
+<link href="~/Content/Site.css" rel="stylesheet" />
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+
+        function Delete(id) {
+            alertify.confirm('PCB','Are You Sure to Delete this Record ?',function(){
+                window.location.href  = '@Url.Action("Delete", "Cricketers")/'+id;
+            },null );
+        }
+        
+    </script>
+}
